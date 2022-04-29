@@ -24,7 +24,7 @@ nav
     display: flex;
 }
 
-nav a
+.link_no_decor a
 {
     text-decoration: none;
     color: white;
@@ -90,15 +90,17 @@ main
 
 aside
 {
-    display: flex;
     margin: 0;
     width: 200px;
+    
+    display: inline-block;
 }
 
 .menu
 {
     margin: 10px 0;
     padding: 10px 0;
+    
 }
 
 .menu li
@@ -110,6 +112,12 @@ aside
     border-radius: 3px;
 }
 
+.menu li a
+{
+    display: flex;
+    align-items: center;
+}
+
 .menu li svg
 {
     margin-right: 10px;
@@ -118,4 +126,13 @@ aside
 .menu li:hover
 {
     background-color: #222222;
+}
+
+.content
+{
+    display: inline-block;
+    background-color: #222222;
+    width: 300px;
+    height: 1600px;
+    padding: 10%;
 }

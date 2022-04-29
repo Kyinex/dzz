@@ -1,0 +1,10 @@
+body
+{
+    margin: 0;
+}
+
+.page_layout
+{
+    border: 1px solid red;
+    margin: 0 20%;
+}
