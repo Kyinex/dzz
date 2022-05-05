@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo240x240.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <title>Формы</title>
+</head>
+<body id="header">
+    <a href="structure.html">Назад</a>
+    <a href="input.html">Вперёд</a>
+    <br>
+    <h1>Формы!</h1>
+    <br>
+    <form action="formHandler.php" name="simple form" autocomplete="on">
+        <input type="text">
+        <br>
+        <textarea name="text" cols="30" rows="10"></textarea>
+        <br>
+        <input type="submit">
+    </form>
+    <hr>
+    <form action="formHandler.php" name="simple form2">
+        <fieldset>
+            <legend>Форма</legend>
+            <input type="text" placeholder="Ваше имя">
+            <br>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Ваш текст"></textarea>
+            <br>
+            <input type="submit">
+            <br>
+        </fieldset>
+        <hr>
+        <label for="username">Username</label>
+        <input id="username" type="text">
+    </form>
+    <hr>
+    <h2>Обязательное поле</h2>
+    <form action="">
+        <textarea name="" id="" cols="30" rows="1" required></textarea>
+        <br>
+        <input type="submit">
+    </form>
+    <hr>
+    <select name="" id="">
+        <option value="first">Первый вариант</option>
+        <option value="second">Второй вариант</option>
+    </select>
+    <hr>
+    <select name="" id="" multiple>
+        <option value="first">Первый вариант</option>
+        <option value="second">Второй вариант</option>
+        <option value="third">Третий вариант</option>
+        <option value="fourth">Четвёртый вариант</option>
+    </select>
+</body>
+</html>
