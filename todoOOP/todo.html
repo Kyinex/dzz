@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO list</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>СПИСОК ДЕЛ</h1>
+        </header>
+
+        <div class="container" id="container">
+            <div id="nothing_Todo">Дел пока нет</div>
+            <ul id="todo_list">
+            </ul>
+        </div>
+        
+        <form id="todo_form">
+            <input type="date" class="add_date">
+            <input type="text" id="add_input" autocomplete="off" placeholder="Дело, которое мне надо сделать.." autofocus>
+            <div>
+                <div class="no_input">Введите задачу</div>
+                <button id="add_button" type="submit">Добавить</button>
+            </div>
+            
+        </form>
+    </main>
+
+    <script src="todooop.js"></script>
+</body>
+</html>

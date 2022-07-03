@@ -1,0 +1,316 @@
+body{
+    background-color: rgb(48, 48, 70);
+    font-size: 20px;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+main{
+    background-color: rgb(74, 81, 105);
+    max-width: 800px;
+    margin: 50px auto;
+    box-shadow: 1px 2px 3px rgba(24, 24, 36, 0.5);
+}
+
+h1{
+    text-align: center;
+    margin: 0;
+}
+
+header{
+    background-color: rgb(241, 203, 76);
+    padding: 5px 0;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.container{
+    padding: 10px 5px;
+    min-height: 65px;
+}
+
+.todo_item{
+    background-color: rgb(94, 101, 126);
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    box-shadow: 1px 2px 3px rgba(24, 24, 36, 0.2);
+
+}
+
+.todo_item:hover button{
+    opacity: 100%;
+}
+
+.textfield{
+    font-size: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    visibility: hidden;
+    position: absolute;
+}
+
+.title{
+    width: 100%;
+    padding: 5px 0;
+}
+
+.border{
+    height: 15px;
+    width: 1px;
+    border-right: solid 1px rgb(141, 141, 141);
+    margin: 0 8px 0 2px;
+}
+
+/* Checkbox */
+
+.checkbox_container{
+    flex-shrink: 0;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.checkbox{
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.checkbox_decor{
+    margin: 14px 15px 0 12px;
+
+
+    box-sizing: border-box;
+    border: solid 4px rgba(241, 203, 76, 0.5);
+    padding: 5px;
+    cursor: pointer;
+}
+
+.todo_item:hover input ~ .checkbox_decor{
+    margin: 9px 10px 0 7px;
+    padding: 10px;
+    border: solid 4px rgb(241, 203, 76);
+
+}
+
+.todo_item input:checked ~ .checkbox_decor{
+    background-color: rgb(241, 203, 76);
+    border: none;
+    margin: 19px 19px 0 16px;
+}
+
+.todo_item:hover input:checked ~ .checkbox_decor{
+    margin: 14px 14px 0 11px;
+}
+
+/* ---------------------------------- */
+
+form{
+    display: flex;
+    border-top: solid 1px rgb(94, 101, 126);
+    align-items: center;
+}
+
+/* Нижняя панель */
+
+.add_date{
+    height: 48px;
+    width: 140px;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    background-color: rgba(24, 24, 36, 0.1);
+    border-bottom: solid 2px rgb(94, 101, 126);
+    border-right: solid 2px rgb(94, 101, 126);
+    border-top: solid 2px rgb(56, 60, 77);
+    border-left: solid 2px rgb(56, 60, 77);
+    margin: 5px;
+    
+}
+
+.date{
+    flex-shrink: 0;
+    width: 54px;
+    box-sizing: border-box;
+    font-size: 12px;
+    color: rgb(197, 197, 197);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+}
+
+.edit_date{
+    visibility: hidden;
+    position: absolute;
+    font-size: 8px;
+    color: rgb(197, 197, 197);
+    background: none;
+    border: none;
+    padding: 0;
+    width: 47px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+}
+
+#add_input{
+    width: 100%;
+    height: 48px;
+    padding-left: 10px;
+    font-size: 20px;
+    color: white;
+    background-color: rgba(24, 24, 36, 0.1);
+    border-bottom: solid 2px rgb(94, 101, 126);
+    border-right: solid 2px rgb(94, 101, 126);
+    border-top: solid 2px rgb(56, 60, 77);
+    border-left: solid 2px rgb(56, 60, 77);
+}
+
+#add_button{
+    opacity: 100%;
+    height: 64px;
+}
+
+/* ________________________ */
+
+button{
+    background: none;
+    border: none;
+    text-transform:uppercase;
+    color: rgb(230, 230, 230);
+    padding: 15px 20px;
+    cursor: pointer;
+    opacity: 0;
+    box-sizing: border-box;
+    height: 45px;
+    align-self: start;
+}
+
+
+button:hover{
+    background-color: rgb(241, 203, 76);
+    color: rgb(48, 48, 70);
+
+}
+
+/* Выполненное */
+
+.completed{
+    color: rgb(150, 150, 150);
+    background-color: rgb(114, 110, 95);
+}
+
+.completed button{
+    color: rgb(150, 150, 150);
+    visibility: hidden;
+}
+
+.completed button:hover{
+    background: none;
+    color: rgb(150, 150, 150);
+}
+
+.completed .title{
+    text-decoration: line-through;
+}
+
+.completed .date{
+    color: rgb(143, 143, 143);
+}
+
+.completed .border{
+    border-right: solid 1px rgb(121, 121, 121);
+}
+
+/* ------------------------ */
+
+/* Изменяемое */
+
+.editing .textfield{
+    width: 100%;
+    visibility: visible;
+    position: static;
+    background-color: rgba(24, 24, 36, 0.1);
+    color: white;
+    border-bottom: solid 2px rgb(111, 118, 143);
+    border-right: solid 2px rgb(111, 118, 143);
+    border-top: solid 2px rgb(66, 70, 88);
+    border-left: solid 2px rgb(66, 70, 88);
+    margin-left: -4px;
+}
+
+.editing .title{
+    width: 0px;
+    height: 0px;
+    visibility: hidden;
+}
+
+.editing .date{
+    background-color: rgba(24, 24, 36, 0.1);
+    color: white;
+    border-bottom: solid 2px rgb(111, 118, 143);
+    border-right: solid 2px rgb(111, 118, 143);
+    border-top: solid 2px rgb(66, 70, 88);
+    border-left: solid 2px rgb(66, 70, 88);
+    padding: 7px 0 6px 0;
+    margin-left: -2px;
+    margin-right: 2px;
+
+}
+
+/* ----------------------- */
+
+#nothing_Todo{
+    text-align: center;
+    font-size: 1.2em;
+    padding: 6px 0 7px 0;
+    margin: 10px 0;
+    opacity: 60%;
+    /* position: absolute;
+    max-width: 790px; */
+}
+
+.no_input{
+    position: absolute;
+    transform: translate(-145px, 15px);
+    visibility: hidden;
+
+    user-select: none;
+    font-size: 18px;
+    background-color: rgb(218, 77, 77);
+    padding: 5px;
+    border-radius: 40px;
+    box-shadow: 1px 2px 5px rgba(24, 24, 36, 0.2);
+
+}
+
+.no_input_visible{
+    visibility: visible;
+}
+
+.no_input_animation{
+    animation-name: no_input_warning;
+    animation-duration: 0.2s;
+}
+
+@keyframes no_input_warning{
+    0% {transform: translate(-145px, 15px);}
+    40% {transform: translate(-165px, 15px);}
+    60% {transform: translate(-145px, 15px);}
+    80% {transform: translate(-150px, 15px);}
+    100% {transform: translate(-145px, 15px);}
+}
+
+.warning{
+    animation-name: warning;
+    animation-duration: 1s;
+}
+
+@keyframes warning {
+    0% {background-color: rgb(218, 77, 77);}
+    100% {background-color: rgba(24, 24, 36, 0.1);}
+}
