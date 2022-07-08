@@ -4,8 +4,12 @@ const todoItems = document.querySelectorAll('todo_item');
 const container = document.getElementById('container');
 const addInput = document.getElementById('add_input');
 const addDate = document.querySelector('.add_date');
+const colors = ['red', 'green', 'blue', 'purple', 'grey'];
+let colorsLength = colors.length;
 let itemId = 1;
 let addCheck;
+
+
 
 if(localStorage.getItem('count') == null){
     localStorage.setItem('count', '1');
@@ -77,17 +81,40 @@ function deleteTodoItem() {
         const nothingTodo = createElement('div', {id: 'nothing_Todo'}, 'Дел пока нет');
         container.appendChild(nothingTodo);
     }
+    
+}
 
+function changeColor(...givedColor){
+    if(!(givedColor[0] === undefined)){
+        const todoItem = document.querySelector('todo_item');
+        console.log(givedColor[0]);
+        todoItem.classList.add(givedColor);
+        return;
+    }
+    let color = this.value;
+    const todoItem = this.parentNode.parentNode;
+    for(let i = 0; i < colorsLength; i++){
+        if (todoItem.classList.contains(colors[i])){
+            todoItem.classList.remove(colors[i]);
+            break;
+        }
+    }
+    todoItem.classList.add(color);
 }
 
 function bindEvents(todoItem){
     const checkbox = todoItem.querySelector('.checkbox');
     const editButton = todoItem.querySelector('button.edit');
     const deleteButton = todoItem.querySelector('button.delete');
+    const colorButton = todoItem.querySelector('.color_panel');
+    console.log(colorButton);
     
     checkbox.addEventListener('change', toggleTodoItem);
     editButton.addEventListener('click', editTodoItem);
     deleteButton.addEventListener('click', deleteTodoItem);
+    colorButton.addEventListener('change', changeColor);
+    // colorButton.onselect = changeColor(colorButton.value);
+
 }
 
 function normalDate(inputDate){
@@ -112,12 +139,19 @@ function createTodoItem(title, date){
     const border = createElement('div', {className: 'border'})
     const label = createElement('label', {className: 'title'}, title);
     const textfield = createElement('input', {className: 'textfield', type: 'text'});
+    
+    const grey = createElement('option', {value: 'grey', className: 'grey'});
+    const red = createElement('option', {value: 'red', className: 'red'});
+    const green = createElement('option', {value: 'green', className: 'green'});
+    const blue = createElement('option', {value: 'blue', className: 'blue'});
+    const purple = createElement('option', {value: 'purple', className: 'purple'});
+    const colorPanel = createElement('select', {className: 'color_panel'}, grey, red, green, blue, purple);
+    const colorButton = createElement('label', {className: 'color_button'}, colorPanel);
+
     const editButton = createElement('button', {className: 'edit'}, 'Изменить');
     const deleteButton = createElement('button', {className: 'delete'}, 'Удалить');
-    // const todoItem = createElement('li', {className: 'todo_item', id: `todo_item_№${localStorage.getItem('count')}`}, 
-    const todoItem = createElement('li', {className: 'todo_item', id: itemId}, 
-    checkboxContainer, todoDate, border, label, textfield, editButton, deleteButton);
-    
+    const todoItem = createElement('li', {className: 'todo_item grey', id: itemId}, 
+    checkboxContainer, todoDate, border, label, textfield, colorButton, editButton, deleteButton);
     bindEvents(todoItem);
     
     return todoItem;
@@ -182,18 +216,18 @@ function addTodoItem(event){
 
         addDate.classList.remove('warning');
         let timeoutID = window.setTimeout(noDate, 2);
-
+        
         return;
     }
 
-
+    
     const todoItem = createTodoItem(addInput.value, addDate.value);
     todoList.appendChild(todoItem);
-
+    
     if(addCheck){
         todoItem.classList.add('completed');
-        // console.log(todoItem.querySelector('.checkbox').value);
         todoItem.querySelector('.checkbox').checked = true;
+        addCheck = false;
     }
 
     const nothingTodo = document.getElementById('nothing_Todo');
@@ -215,15 +249,24 @@ function addTodoItem(event){
 
 function saveItems(state, ...id){
     let count = Number(localStorage.getItem('count'));
+    let currentItem = document.getElementById(id);
+    let itemColor;
+    for (var i = 0; i < colorsLength; i++){
+        if (currentItem.classList.contains(colors[i])){
+            itemColor = colors[i];
+            break
+        }
+    }
     if(state == 'add'){
 
         let item = {
             input: addInput.value,
             date: addDate.value,
-            check: isCompleted(id)
-
+            check: isCompleted(id),
+            color: itemColor
+            
         }
-
+        
         localStorage.setItem(`item${count}`, JSON.stringify(item));
         count = Number(count) + 1;
         localStorage.setItem('count', count);
@@ -248,9 +291,10 @@ function saveItems(state, ...id){
 
     else if(state == 'edit'){
         let item = {
-            input: document.getElementById(id).querySelector('.title').innerText,
-            date: document.getElementById(id).querySelector('.edit_date').value,
-            check: isCompleted(id)
+            input: currentItem.querySelector('.title').innerText,
+            date: currentItem.querySelector('.edit_date').value,
+            check: isCompleted(id),
+            color: itemColor
         }
 
         localStorage.setItem(`item${id}`, JSON.stringify(item));
@@ -258,11 +302,22 @@ function saveItems(state, ...id){
     }
     else if(state == 'check'){
         let item = {
-            input: document.getElementById(id).querySelector('.title').innerText,
-            date: document.getElementById(id).querySelector('.edit_date').value,
-            check: isCompleted(id)
+            input: currentItem.querySelector('.title').innerText,
+            date: currentItem.querySelector('.edit_date').value,
+            check: isCompleted(id),
+            color: itemColor
         }
 
+        localStorage.setItem(`item${id}`, JSON.stringify(item));
+        console.log(localStorage.getItem(`item${id}`));
+    }
+    else if(state == 'color'){
+        let item = {
+            input: currentItem.querySelector('.title').innerText,
+            date: currentItem.querySelector('.edit_date').value,
+            check: isCompleted(id),
+            color: itemColor
+        }
         localStorage.setItem(`item${id}`, JSON.stringify(item));
         console.log(localStorage.getItem(`item${id}`));
     }
@@ -287,6 +342,7 @@ function loadItems(){
         addDate.value = item.date; 
         addCheck = item.check;
         addTodoItem('load');
+        changeColor(item.color);
     }
 }
 
